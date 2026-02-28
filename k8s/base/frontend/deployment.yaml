@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cinemaplex-frontend
+  labels:
+    app: cinemaplex-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cinemaplex-frontend
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: cinemaplex-frontend
+    spec:
+      containers:
+        - name: frontend
+          image: govinddevopsdocker/cinemaplex-frontend:latest
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "100m"
+            limits:
+              memory: "128Mi"
+              cpu: "200m"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 10
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cinemaplex-frontend
+spec:
+  selector:
+    app: cinemaplex-frontend
+  ports:
+    - port: 80
+      targetPort: 80
+  type: ClusterIP

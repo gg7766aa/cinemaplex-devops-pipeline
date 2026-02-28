@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cinemaplex-backend
+  labels:
+    app: cinemaplex-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cinemaplex-backend
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: cinemaplex-backend
+    spec:
+      containers:
+        - name: backend
+          image: govinddevopsdocker/cinemaplex-backend:latest
+          ports:
+            - containerPort: 3001
+          env:
+            - name: PORT
+              value: "3001"
+            - name: AWS_REGION
+              value: "us-east-1"
+            - name: S3_BUCKET_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: cinemaplex-secrets
+                  key: S3_BUCKET_NAME
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: cinemaplex-secrets
+                  key: AWS_ACCESS_KEY_ID
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: cinemaplex-secrets
+                  key: AWS_SECRET_ACCESS_KEY
+            - name: REDIS_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: cinemaplex-config
+                  key: REDIS_URL
+            - name: MONGODB_URI
+              valueFrom:
+                secretKeyRef:
+                  name: cinemaplex-secrets
+                  key: MONGODB_URI
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "300m"
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 3001
+            initialDelaySeconds: 15
+            periodSeconds: 20
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 3001
+            initialDelaySeconds: 10
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cinemaplex-backend
+spec:
+  selector:
+    app: cinemaplex-backend
+  ports:
+    - port: 3001
+      targetPort: 3001
+  type: ClusterIP
