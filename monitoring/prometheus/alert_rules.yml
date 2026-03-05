@@ -1,0 +1,38 @@
+groups:
+  - name: cinemaplex_alerts
+    rules:
+      - alert: HighCPUUsage
+        expr: cpu_usage_percent > 80
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High CPU usage detected"
+          description: "CPU usage is above 80% for 5 minutes"
+
+      - alert: VideoProcessingFailed
+        expr: video_processing_failures_total > 5
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Video processing failures detected"
+          description: "More than 5 video processing failures in 1 minute"
+
+      - alert: HighBandwidthUsage
+        expr: cinemaplex_bandwidth_bytes > 1000000000
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High bandwidth usage"
+          description: "Bandwidth usage exceeds 1GB"
+
+      - alert: PodDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Pod is down"
+          description: "A cinemaplex pod has been down for 1 minute"
