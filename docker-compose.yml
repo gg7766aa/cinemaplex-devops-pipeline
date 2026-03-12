@@ -1,0 +1,112 @@
+version: '3.8'
+
+services:
+
+  frontend:
+    build: ./services/frontend
+    container_name: cinemaplex-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - cinemaplex-network
+
+  backend:
+    build: ./services/backend-api
+    container_name: cinemaplex-backend
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - REDIS_URL=redis://redis:6379
+      - MONGODB_URI=mongodb://mongodb:27017/cinemaplex
+      - AWS_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - S3_BUCKET_NAME=${S3_BUCKET_NAME}
+    depends_on:
+      - redis
+      - mongodb
+    restart: unless-stopped
+    networks:
+      - cinemaplex-network
+
+  video-processor:
+    build: ./services/video-processor
+    container_name: cinemaplex-processor
+    ports:
+      - "5001:5001"
+    environment:
+      - AWS_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - S3_BUCKET_NAME=${S3_BUCKET_NAME}
+      - REDIS_URL=redis://redis:6379
+    volumes:
+      - /tmp/videos:/tmp/videos
+    depends_on:
+      - redis
+    restart: unless-stopped
+    networks:
+      - cinemaplex-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: cinemaplex-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+    networks:
+      - cinemaplex-network
+
+  mongodb:
+    image: mongo:6-jammy
+    container_name: cinemaplex-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb-data:/data/db
+    restart: unless-stopped
+    networks:
+      - cinemaplex-network
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: cinemaplex-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./monitoring/prometheus/alert_rules.yml:/etc/prometheus/alert_rules.yml
+    restart: unless-stopped
+    networks:
+      - cinemaplex-network
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: cinemaplex-grafana
+    ports:
+      - "3002:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=cinemaplex123
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana-data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+    networks:
+      - cinemaplex-network
+
+volumes:
+  redis-data:
+  mongodb-data:
+  grafana-data:
+
+networks:
+  cinemaplex-network:
+    driver: bridge
