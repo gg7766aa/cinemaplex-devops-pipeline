@@ -15,6 +15,13 @@
 
 ---
 
+## 🎬 Live Demo
+
+> 🌐 **Live URL:** https://kingless-deftly-marisol.ngrok-free.dev
+> _(Start ngrok to activate live demo)_
+
+---
+
 ## 🎬 Overview
 
 > **Production-grade Netflix-style video streaming platform** built as a microservices architecture. Features automated video processing pipeline using FFmpeg, AWS S3 storage, Kubernetes orchestration with HPA, full CI/CD with Jenkins and GitHub Actions, Trivy security scanning, and Prometheus + Grafana observability.
