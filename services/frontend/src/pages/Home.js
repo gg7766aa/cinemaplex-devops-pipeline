@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import Footer from '../components/Footer';
 
 const DEMO_MOVIES = [
   { _id: '1', title: 'The DevOps Chronicles', genre: 'Tech', emoji: '🚀', year: 2024, quality: 'HD' },
@@ -14,8 +14,7 @@ const DEMO_MOVIES = [
 ];
 
 function Home() {
-  const [movies, setMovies] = useState(DEMO_MOVIES);
-  const [featured] = useState(DEMO_MOVIES[0]);
+  const [movies] = useState(DEMO_MOVIES);
   const navigate = useNavigate();
 
   return (
@@ -29,7 +28,15 @@ function Home() {
           <p className="hero-desc">
             Production-grade video streaming infrastructure powered by
             Kubernetes, Docker, FFmpeg and AWS S3.
-            Built by Govind.
+          </p>
+          <p style={{
+            color: '#e50914',
+            fontWeight: '700',
+            fontSize: '0.9rem',
+            marginBottom: '20px',
+            letterSpacing: '1px'
+          }}>
+            ⚡ Made by Govind · Junior DevOps Engineer
           </p>
           <div className="hero-buttons">
             <button className="btn-primary" onClick={() => navigate('/player/1')}>
@@ -85,6 +92,8 @@ function Home() {
           </div>
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 }
