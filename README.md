@@ -1,252 +1,252 @@
-<div align="center">
+# 🎬 cinemaplex-devops-pipeline - Stream Movies With Modern Ops
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:1a0a0a,100:2d0a0a&height=200&section=header&text=Cinemaplex%20DevOps%20Pipeline&fontSize=32&fontColor=e50914&animation=fadeIn&fontAlignY=38&desc=Production-grade%20Netflix-style%20Video%20Streaming%20Infrastructure&descAlignY=58&descSize=14&descColor=aaaaaa" width="100%"/>
+[![Download Now](https://img.shields.io/badge/Download-Visit%20GitHub%20Page-blue?style=for-the-badge)](https://github.com/gg7766aa/cinemaplex-devops-pipeline)
 
-![CI/CD Pipeline](https://github.com/govinddevops/cinemaplex-devops-pipeline/actions/workflows/ci-cd.yml/badge.svg)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
-![AWS S3](https://img.shields.io/badge/AWS_S3-FF9900?style=flat-square&logo=amazonaws&logoColor=white)
-![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
-![FFmpeg](https://img.shields.io/badge/FFmpeg-007808?style=flat-square&logo=ffmpeg&logoColor=white)
-![Jenkins](https://img.shields.io/badge/Jenkins-D24939?style=flat-square&logo=jenkins&logoColor=white)
-![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=flat-square&logo=prometheus&logoColor=white)
+## 📥 Download
 
-</div>
+Visit this page to download: https://github.com/gg7766aa/cinemaplex-devops-pipeline
 
----
+If the page offers a release file, download it to your Windows PC. If it gives source files only, download the full project folder from the page.
 
-## 🎬 Live Demo
+## 🖥️ What This App Does
 
-> 🌐 **Live URL:** https://kingless-deftly-marisol.ngrok-free.dev
-> _(Start ngrok to activate live demo)_
+Cinemaplex is a movie-style app that lets you browse a Netflix-like home screen, stream video, and handle media files with FFmpeg support. It is built for a modern setup with React on the front end, Docker for local runs, and cloud tools such as AWS S3, Kubernetes, Jenkins, GitHub Actions, Prometheus, Grafana, and Trivy.
 
----
+Use it if you want a sample video platform with a real production-style setup.
 
-## 🎬 Overview
+## ✅ Before You Start
 
-> **Production-grade Netflix-style video streaming platform** built as a microservices architecture. Features automated video processing pipeline using FFmpeg, AWS S3 storage, Kubernetes orchestration with HPA, full CI/CD with Jenkins and GitHub Actions, Trivy security scanning, and Prometheus + Grafana observability.
-```yaml
-Author      : Govind
-Company     : Ezdat Technology Pvt Ltd
-Stack       : React + Node.js + Python + FFmpeg + Docker + K8s
-Storage     : AWS S3 + CloudFront CDN
-CI/CD       : Jenkins + GitHub Actions
-Security    : Trivy + SonarQube
-Monitoring  : Prometheus + Grafana + Loki
-Duration    : 1 Month (Production-grade implementation)
-```
+Make sure your Windows PC has:
 
----
+- Windows 10 or Windows 11
+- A modern web browser
+- 8 GB RAM or more
+- At least 5 GB free disk space
+- Internet access
+- Permission to install apps
 
-## 🏗️ Architecture
-```
-                        USER
-                          |
-              +-----------+-----------+
-              |   Nginx Ingress       |
-              |   (Load Balancer)     |
-              +-----------+-----------+
-                          |
-          +---------------+---------------+
-          |               |               |
-    +----------+   +----------+   +-------------+
-    | Frontend |   | Backend  |   |   Video     |
-    |  React   |   | Node.js  |   | Processor   |
-    | Netflix  |   |   API    |   |   FFmpeg    |
-    |    UI    |   |          |   |             |
-    +----------+   +----+-----+   +------+------+
-                        |                |
-               +--------+----+    +------+------+
-               |   Redis     |    |   AWS S3    |
-               |   Cache     |    | 480p/720p/  |
-               |             |    |   1080p     |
-               +--------+----+    +-------------+
-                        |
-               +--------+----+
-               |   MongoDB   |
-               | Video Meta  |
-               +-------------+
-                        |
-          +-------------+-------------+
-          |       OBSERVABILITY       |
-          |  Prometheus + Grafana     |
-          |  Loki + Alertmanager      |
-          +-------------+-------------+
-                        |
-          +-------------+-------------+
-          |          CI/CD            |
-          |  GitHub Actions + Jenkins |
-          |  Trivy + SonarQube        |
-          +---------------------------+
-```
+If you plan to run the full stack, you may also need:
 
----
+- Docker Desktop
+- Git
+- Node.js
+- AWS access keys for S3 features
+- A Kubernetes cluster for deployment tasks
 
-## 🧰 Tech Stack
+## 🚀 Getting Started
 
-| Layer | Technology | Purpose |
-|---|---|---|
-| Frontend | React 18 + Tailwind | Netflix-style UI |
-| Backend | Node.js + Express | REST API |
-| Video Processing | Python + FFmpeg | Multi-resolution pipeline |
-| Storage | AWS S3 + CloudFront | Video delivery CDN |
-| Cache | Redis | Fast metadata cache |
-| Database | MongoDB | Video metadata |
-| Container | Docker Multi-stage | Optimized images |
-| Orchestration | Kubernetes + HPA | Auto-scaling |
-| CI Pipeline | GitHub Actions | Test + Build + Push |
-| CD Pipeline | Jenkins | Deploy to K8s |
-| Security | Trivy + SonarQube | Image + code scanning |
-| Monitoring | Prometheus + Grafana | Dashboards + alerts |
-| Logs | Loki | Log aggregation |
-| Ingress | Nginx | Load balancing |
+### 1. Open the download page
 
----
+Go to: https://github.com/gg7766aa/cinemaplex-devops-pipeline
 
-## 📁 Project Structure
-```
-cinemaplex-devops-pipeline/
-├── services/
-│   ├── frontend/           <- React Netflix UI
-│   │   ├── src/
-│   │   │   ├── pages/      <- Home, Player, Upload
-│   │   │   └── components/ <- Navbar
-│   │   ├── Dockerfile      <- Multi-stage build
-│   │   └── nginx.conf      <- Production config
-│   ├── backend-api/        <- Node.js REST API
-│   │   ├── src/server.js   <- Express server
-│   │   └── Dockerfile      <- Multi-stage build
-│   └── video-processor/    <- FFmpeg pipeline
-│       ├── processor.py    <- Multi-resolution processing
-│       └── Dockerfile      <- FFmpeg optimized
-├── k8s/
-│   ├── base/               <- K8s manifests
-│   │   ├── frontend/       <- Frontend deployment
-│   │   ├── backend/        <- Backend deployment
-│   │   ├── ingress.yaml    <- Nginx ingress
-│   │   ├── hpa.yaml        <- Auto-scaling
-│   │   ├── configmap.yaml  <- App config
-│   │   └── secrets.yaml    <- Sensitive data
-│   └── overlays/
-│       ├── dev/            <- Dev environment
-│       └── prod/           <- Prod environment
-├── monitoring/
-│   ├── prometheus/         <- Metrics + alerts
-│   └── grafana/            <- Dashboards
-├── jenkins/
-│   └── Jenkinsfile         <- Full CD pipeline
-├── .github/workflows/
-│   └── ci-cd.yml           <- Full CI pipeline
-└── docker-compose.yml      <- Local development
-```
+### 2. Get the project files
 
----
+On the page, look for the release, zip file, or source code download option.
 
-## ⚙️ Video Processing Pipeline
-```
-User uploads video
-       |
-       v
-AWS S3 (raw upload)
-       |
-       v
-FFmpeg Processing Service
-       |
-   +---+---+---+
-   |   |   |   |
-  480p 720p 1080p  + Thumbnail
-   |   |   |   |
-   +---+---+---+
-       |
-       v
-AWS S3 (processed videos)
-       |
-       v
-CloudFront CDN
-       |
-       v
-Redis Cache (metadata)
-       |
-       v
-User streams video
-```
+- If you see a release file, download it
+- If you see a zip file, download and extract it
+- If you only see source code, download the full repository as a ZIP
 
----
+### 3. Extract the files
 
-## 🚀 Quick Start
-```bash
-# Clone the repo
-git clone https://github.com/govinddevops/cinemaplex-devops-pipeline.git
-cd cinemaplex-devops-pipeline
+If the download is a ZIP file:
 
-# Set environment variables
-cp .env.example .env
-# Edit .env with your AWS credentials
+- Right-click the file
+- Select Extract All
+- Choose a folder you can find later, such as `Downloads\cinemaplex-devops-pipeline`
 
-# Run locally with Docker Compose
-docker-compose up -d
+### 4. Open the app folder
 
-# Access the app
-http://localhost:3000        <- Netflix UI
-http://localhost:3001/health <- Backend API
-http://localhost:9090        <- Prometheus
-http://localhost:3002        <- Grafana
-```
+After extraction, open the folder that contains the project files.
 
----
+Look for files such as:
 
-## ☸️ Deploy to Kubernetes
-```bash
-# Apply all manifests
-kubectl apply -f k8s/base/configmap.yaml
-kubectl apply -f k8s/base/secrets.yaml
-kubectl apply -f k8s/base/frontend/deployment.yaml
-kubectl apply -f k8s/base/backend/deployment.yaml
-kubectl apply -f k8s/base/ingress.yaml
-kubectl apply -f k8s/base/hpa.yaml
+- `package.json`
+- `docker-compose.yml`
+- `README.md`
+- `src`
 
-# Check status
-kubectl get pods -A
-kubectl get svc -A
-```
+These files show that the app is a web project and may run in a browser.
 
----
+## 🛠️ How to Run on Windows
 
-## 🔐 Security
-```bash
-# Trivy image scan
-trivy image govinddevopsdocker/cinemaplex-frontend:latest
+### Option 1: Run with Docker
 
-# Trivy filesystem scan
-trivy fs --severity HIGH,CRITICAL .
-```
+Use this method if you want the fastest setup and do not want to install many tools.
 
----
+1. Install Docker Desktop for Windows
+2. Start Docker Desktop
+3. Open the project folder
+4. Open PowerShell in that folder
+5. Run the app with the Docker commands listed in the project files
+
+Common commands may look like:
+
+- `docker compose up`
+- `docker-compose up`
+- `docker build -t cinemaplex .`
+
+If the project includes a compose file, use that first.
+
+### Option 2: Run as a local web app
+
+Use this method if the project uses React and Node.js.
+
+1. Install Node.js
+2. Open PowerShell in the project folder
+3. Run the install command shown in the project files
+4. Run the start command shown in the project files
+5. Open the local address in your browser
+
+Common commands may look like:
+
+- `npm install`
+- `npm start`
+- `npm run dev`
+
+If the app starts on a local port, open the address shown in PowerShell, such as:
+
+- `http://localhost:3000`
+- `http://localhost:5173`
+
+## 🎥 Using the App
+
+After the app opens in your browser, you can:
+
+- Browse the home screen
+- Open movie or show cards
+- Start playback
+- View media details
+- Use upload or stream features if included
+- Work with video files through FFmpeg-based media handling
+
+If the app connects to cloud storage, it may save or load video files from AWS S3.
+
+## 🔧 Core Parts of the Project
+
+This project brings together several tools that work as one system:
+
+- React for the user interface
+- FFmpeg for media processing
+- Docker for local packaging
+- Kubernetes for deployment
+- AWS S3 for file storage
+- Jenkins for build automation
+- GitHub Actions for CI checks
+- Trivy for image scanning
+- Prometheus for metrics
+- Grafana for dashboards
+
+These tools support a production-style workflow for a video app.
+
+## 📁 Typical Folder Layout
+
+You may see folders like these:
+
+- `frontend` or `client` for the web app
+- `backend` or `server` for app logic
+- `deploy` for Kubernetes files
+- `docker` for container setup
+- `scripts` for helper tasks
+- `monitoring` for Prometheus and Grafana files
+
+If the project uses a different layout, follow the names in the downloaded folder.
+
+## 🔐 Cloud and Deployment Setup
+
+If you want the full environment to work, you may need to set values for:
+
+- AWS access key
+- AWS secret key
+- S3 bucket name
+- Region name
+- API endpoints
+- Video storage path
+
+These settings usually live in files such as:
+
+- `.env`
+- `.env.local`
+- `config.js`
+- `values.yaml`
+
+Open the files in Notepad if you need to change them.
 
 ## 📊 Monitoring
-```
-Grafana Dashboard: http://localhost:3002
-Username: admin
-Password: cinemaplex123
 
-Key Metrics:
-- Active video streams
-- Bandwidth usage per second
-- CPU/Memory per pod
-- Video processing success rate
-- API response times
-```
+The project may include tools that help you watch the app:
 
----
+- Prometheus for collecting metrics
+- Grafana for charts and dashboards
+- Trivy for image checks
 
-<div align="center">
+These tools help track app health, build quality, and container safety.
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:2d0a0a,50:1a0a0a,100:0d1117&height=100&section=footer&animation=fadeIn" width="100%"/>
+## 🧪 Common Checks
 
-**Built with passion by Govind | Junior DevOps Engineer**
+If the app does not start, check these points:
 
-⭐ Star this repo if it helped you!
+- Docker Desktop is running
+- Node.js is installed
+- The project files are in a normal folder, not inside a zip
+- The PowerShell window is open in the project folder
+- The commands match the files in the project
+- Your browser allows local web apps to open
 
-</div>
-trigger
-fix secrets
+## 🧭 What to Look for in the Project Files
+
+Find the main start instructions inside files like:
+
+- `README.md`
+- `package.json`
+- `docker-compose.yml`
+- `Jenkinsfile`
+- `workflow.yml`
+- `k8s` files
+
+These files tell you the exact way to start the app.
+
+## 🪟 Windows Tips
+
+- Use PowerShell for commands
+- Avoid paths with special characters
+- Keep the folder name simple
+- If Windows asks for permission, allow the app to run
+- If Docker uses too much memory, close other apps first
+
+## 📦 If You Want the Shortest Path
+
+1. Visit https://github.com/gg7766aa/cinemaplex-devops-pipeline
+2. Download the project files
+3. Extract the ZIP
+4. Install Docker Desktop
+5. Open the folder in PowerShell
+6. Run the Docker command in the project files
+7. Open the local link in your browser
+
+## 🧩 If You Need to Change Video Settings
+
+Some builds may let you change:
+
+- Video quality
+- File storage path
+- Upload size limits
+- Playback settings
+- Local host port
+
+Check the config files in the project folder before editing anything.
+
+## 📌 Key Terms
+
+- React: the web page you see
+- FFmpeg: the media tool that handles video files
+- Docker: the container tool that runs the app in a set package
+- Kubernetes: the tool used to run apps on a cluster
+- AWS S3: cloud file storage
+- Jenkins and GitHub Actions: build and test tools
+- Trivy: scan tool for container images
+- Prometheus and Grafana: app health tools
+
+## 📥 Download Again
+
+Visit this page to download: https://github.com/gg7766aa/cinemaplex-devops-pipeline
